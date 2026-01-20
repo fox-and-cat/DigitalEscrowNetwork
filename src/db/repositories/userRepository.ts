@@ -2,8 +2,14 @@ import { Collection, Db } from 'mongodb';
 import { User, CreateUserDto, UpdateUserDto } from '../models/user';
 import { IUserRepository } from '../index';
 
+
+
 export class UserRepository implements IUserRepository {
   private collection: Collection<User>;
+
+  async findByUsername(username: string): Promise<any> {
+    return this.collection.findOne({ username });
+  }
 
   constructor(db: Db) {
     this.collection = db.collection<User>('users');

@@ -1,4 +1,4 @@
-import { Context } from 'grammy';
+import { BotContext } from '../context';
 import { database } from '../../db';
 import { MESSAGES, CALLBACK_DATA, USER_ROLES } from '../../config/constants';
 import { 
@@ -7,7 +7,7 @@ import {
   mainMenuKeyboard 
 } from '../keyboards/inline';
 
-export async function handleStart(ctx: Context): Promise<void> {
+export async function handleStart(ctx: BotContext): Promise<void> {
   const userId = ctx.from?.id;
   const username = ctx.from?.username || null;
 
@@ -44,7 +44,7 @@ export async function handleStart(ctx: Context): Promise<void> {
   });
 }
 
-export async function handleAgreementAccept(ctx: Context): Promise<void> {
+export async function handleAgreementAccept(ctx: BotContext): Promise<void> {
   const userId = ctx.from?.id;
 
   if (!userId) {
@@ -64,14 +64,14 @@ export async function handleAgreementAccept(ctx: Context): Promise<void> {
   });
 }
 
-export async function handleAgreementDecline(ctx: Context): Promise<void> {
+export async function handleAgreementDecline(ctx: BotContext): Promise<void> {
   console.log(`❌ Agreement declined: ${ctx.from?.id}`);
   
   await ctx.answerCallbackQuery({ text: 'Agreement declined' });
   await ctx.editMessageText(MESSAGES.AGREEMENT_DECLINED);
 }
 
-export async function handleRoleSelection(ctx: Context, role: 'buyer' | 'seller'): Promise<void> {
+export async function handleRoleSelection(ctx: BotContext, role: 'buyer' | 'seller'): Promise<void> {
   const userId = ctx.from?.id;
 
   if (!userId) {

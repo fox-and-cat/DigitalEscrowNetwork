@@ -10,17 +10,17 @@
     "lint": "eslint src/**/*.ts"
   },
   "dependencies": {
-    "@grammyjs/conversations": "^1.2.0",
-    "dotenv": "^16.3.1",
     "grammy": "^1.21.1",
-    "mongodb": "^6.3.0"
+    "@grammyjs/conversations": "^1.2.0",
+    "mongodb": "^6.3.0",
+    "dotenv": "^16.3.1"
   },
   "devDependencies": {
     "@types/node": "^20.10.0",
+    "typescript": "^5.3.0",
+    "ts-node-dev": "^2.0.0",
     "@typescript-eslint/eslint-plugin": "^6.13.0",
     "@typescript-eslint/parser": "^6.13.0",
-    "eslint": "^8.55.0",
-    "ts-node-dev": "^2.0.0",
-    "typescript": "^5.3.0"
+    "eslint": "^8.55.0"
   }
 }

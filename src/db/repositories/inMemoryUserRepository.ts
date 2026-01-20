@@ -11,6 +11,18 @@ export class InMemoryUserRepository {
     return this.users.get(userId) || null;
   }
 
+  async findByUsername(username: string): Promise<User | null> {
+    const normalizedUsername = username.toLowerCase().replace('@', '');
+    
+    for (const user of this.users.values()) {
+      if (user.username?.toLowerCase() === normalizedUsername) {
+        return user;
+      }
+    }
+    
+    return null;
+  }
+
   async create(dto: CreateUserDto): Promise<User> {
     const now = new Date();
     
@@ -53,7 +65,7 @@ export class InMemoryUserRepository {
     return user !== null && user !== undefined && user.agreementAccepted && user.role !== null;
   }
 
-  // Дополнительные методы для отладки
+  // Debug методы
   getAllUsers(): User[] {
     return Array.from(this.users.values());
   }

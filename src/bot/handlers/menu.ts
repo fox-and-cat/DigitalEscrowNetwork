@@ -1,9 +1,9 @@
-import { Context } from 'grammy';
+import { BotContext } from '../context';
 import { database } from '../../db';
 import { MESSAGES } from '../../config/constants';
 import { mainMenuKeyboard } from '../keyboards/inline';
 
-export async function handleMenu(ctx: Context): Promise<void> {
+export async function handleMenu(ctx: BotContext): Promise<void> {
   const userId = ctx.from?.id;
 
   if (!userId) {
@@ -22,7 +22,7 @@ export async function handleMenu(ctx: Context): Promise<void> {
   await ctx.reply(MESSAGES.MAIN_MENU, { reply_markup: mainMenuKeyboard });
 }
 
-export async function handleBackToMenu(ctx: Context): Promise<void> {
+export async function handleBackToMenu(ctx: BotContext): Promise<void> {
   await ctx.answerCallbackQuery();
   await ctx.editMessageText(MESSAGES.MAIN_MENU, { 
     reply_markup: mainMenuKeyboard 
