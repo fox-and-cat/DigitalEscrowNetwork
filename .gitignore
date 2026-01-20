@@ -30,3 +30,4 @@ coverage/
 # Runtime
 .cache/
 tmp/
+node_modules/
