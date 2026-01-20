@@ -1,0 +1,27 @@
+node_modules/
+npm-debug.log
+.DS_Store
+.env.local
+.env.*.local
+dist/
+build/
+coverage/
+.cache/
+*.log
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.classpath
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Testing
+.nyc_output/
+test-results/

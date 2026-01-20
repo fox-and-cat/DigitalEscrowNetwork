@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  bot:
+    build: .
+    container_name: den-bot
+    restart: unless-stopped
+    environment:
+      - BOT_TOKEN=${BOT_TOKEN}
+      - MONGODB_URI=mongodb://mongo:27017/den_bot
+      - NODE_ENV=production
+    depends_on:
+      - mongo
+    networks:
+      - den-network
+
+  mongo:
+    image: mongo:7
+    container_name: den-mongo
+    restart: unless-stopped
+    environment:
+      - MONGO_INITDB_DATABASE=den_bot
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - den-network
+    ports:
+      - "27017:27017"
+
+volumes:
+  mongo_data:
+
+networks:
+  den-network:
+    driver: bridge
